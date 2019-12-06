@@ -17,7 +17,7 @@ public class AuthActivity extends AppCompatActivity implements AuthActivityListe
     FrameLayout container;
 
 
-    private FragmentManager fragmentManager=getSupportFragmentManager();
+    private FragmentManager fragmentManager = getSupportFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class AuthActivity extends AppCompatActivity implements AuthActivityListe
 
     @Override
     public void openConfirmSmsFragment(String phoneNumber) {
-        fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out, R.anim.slide_left_in, R.anim.slide_right_out).replace(R.id.container,  ConfirmSmsFragment.newInstance(phoneNumber)).addToBackStack(ConfirmSmsFragment.TAG)
+        fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_right_in, R.anim.slide_left_out, R.anim.slide_left_in, R.anim.slide_right_out).replace(R.id.container, ConfirmSmsFragment.newInstance(phoneNumber)).addToBackStack(ConfirmSmsFragment.TAG)
                 .commit();
     }
 
@@ -56,10 +56,13 @@ public class AuthActivity extends AppCompatActivity implements AuthActivityListe
 
         } else if (count == 1) {
             finish();
-        } else {
-            Log.d("back", "onBackPressed");
+        } else if (count == 3) {
             getSupportFragmentManager().popBackStack();
-        }
-
+            getSupportFragmentManager().popBackStack();
+        } else{
+            Log.d("back", "onBackPressed");
+        getSupportFragmentManager().popBackStack();
     }
+
+}
 }

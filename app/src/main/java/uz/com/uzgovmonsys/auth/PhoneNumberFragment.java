@@ -53,6 +53,7 @@ public class PhoneNumberFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
 
         backIcon.setOnClickListener(v -> {
+            hideKeyboard(enter_phone);
             getActivity().onBackPressed();
         });
         phoneNumberValidate = new ValidationUtils(phoneNumberTextInput, enter_phone);

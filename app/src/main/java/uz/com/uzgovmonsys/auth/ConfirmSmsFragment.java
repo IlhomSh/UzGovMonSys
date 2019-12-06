@@ -21,6 +21,8 @@ import butterknife.Unbinder;
 import uz.com.uzgovmonsys.R;
 import uz.com.uzgovmonsys.utils.ValidationUtils;
 
+import static uz.com.uzgovmonsys.utils.UtilsClass.hideKeyboard;
+
 public class ConfirmSmsFragment extends BaseFragment {
 
     private static final String PHONE = "PHONE_NUMBER";
@@ -53,7 +55,8 @@ public class ConfirmSmsFragment extends BaseFragment {
 
 
         unbinder = ButterKnife.bind(this, view);
-        backIcon.setOnClickListener(v->{
+        backIcon.setOnClickListener(v -> {
+            hideKeyboard(enterSms);
             getActivity().onBackPressed();
         });
         validationUtils = new ValidationUtils(smsTextInputLayout, enterSms);
@@ -64,7 +67,7 @@ public class ConfirmSmsFragment extends BaseFragment {
     @OnClick(R.id.btn)
     public void onClick() {
 
-        if (!enterSms.getText().toString().trim().equals("1111"))  {
+        if (!enterSms.getText().toString().trim().equals("1111")) {
             validationUtils.setErrorMsg("Tasdiqlash ko'di noto'g'ri");
             return;
         }
