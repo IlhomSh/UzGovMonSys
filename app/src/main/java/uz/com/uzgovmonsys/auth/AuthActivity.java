@@ -7,15 +7,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
 
+import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.arellomobile.mvp.presenter.InjectPresenter;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.com.uzgovmonsys.R;
 
-public class AuthActivity extends AppCompatActivity implements AuthActivityListener {
+public class AuthActivity extends MvpAppCompatActivity implements AuthCallback,AuthActivityListener {
 
     @BindView(R.id.container)
     FrameLayout container;
 
+    @InjectPresenter
+    AuthPresenter presenter;
 
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -24,6 +29,7 @@ public class AuthActivity extends AppCompatActivity implements AuthActivityListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
         ButterKnife.bind(this);
+        presenter.create();
         openPhoneNumberFragment();
     }
 
